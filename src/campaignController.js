@@ -2,7 +2,7 @@ const whatsappQueue = require('./queues/whatsappQueue');
 const moment = require('moment-timezone');
 
 async function scheduleWhatsAppCampaign(req, res) {
-	const { numbers, message, image, scheduleTime } = req.body;
+	const { numbers, message, image, scheduleTime, interval } = req.body;
 
 	if (!numbers || numbers.length === 0) {
 		return res.status(400).send('Lista de números é obrigatória.');
@@ -33,12 +33,10 @@ async function scheduleWhatsAppCampaign(req, res) {
 		return res.status(400).send('O horário de agendamento deve ser no futuro.');
 	}
 
-	// Define o intervalo entre mensagens (em milissegundos)
-	const interval = 1000; // 5 segundos entre mensagens
+	const jobDelay = initialDelay;
 
-	const jobDelay = initialDelay + interval; // Incrementando o delay para cada número
 	whatsappQueue.add(
-		{ numbers, message, image },
+		{ numbers, message, image, interval },
 		{ attempts: 3, delay: jobDelay }
 	);
 

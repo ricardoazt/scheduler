@@ -12,8 +12,8 @@ const whatsappQueue = new Queue('whatsappQueue', {
 
 // Processamento das mensagens
 whatsappQueue.process(async (job) => {
-	const { numbers, message, image } = job.data;
-	await sendWhatsApp(numbers, message, image); // Chama seu método de envio
+	const { numbers, message, image, interval } = job.data;
+	await sendWhatsApp(numbers, message, image, interval); // Chama seu método de envio
 
 });
 

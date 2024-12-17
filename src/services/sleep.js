@@ -1,5 +1,5 @@
-function delay(ms) {
+function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-module.exports = delay;
+module.exports = sleep;

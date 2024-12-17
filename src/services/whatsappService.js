@@ -1,10 +1,10 @@
 const { Worker } = require('worker_threads');
 const path = require('path');
 
-function sendWhatsApp(numbers, message, image) {
+function sendWhatsApp(numbers, message, image, interval) {
     return new Promise((resolve, reject) => {
         const worker = new Worker(path.resolve(__dirname, 'worker.js'), {
-            workerData: { numbers, message, image },
+            workerData: { numbers, message, image, interval },
         });
 
         worker.on('message', resolve);
