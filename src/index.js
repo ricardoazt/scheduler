@@ -8,5 +8,5 @@ app.use(bodyParser.json());
 // Rota para agendar a campanha
 app.post('/schedule/whatsapp', scheduleWhatsAppCampaign);
 
-const PORT = 3000;
+const PORT = 8092;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
